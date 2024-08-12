@@ -1,5 +1,7 @@
 import { IModel } from "@/Interface/common.interface";
 import Model from "./Model";
+import { Suspense } from "react";
+import Loader from "../ui/Loader";
 
 
 interface IModelWrapper {
@@ -19,9 +21,11 @@ const ModelWrapper: React.FC<IModelWrapper> = ({ currentModel }) => {
             {
                 currentModel?.id
                     ?
-                    <div className="mt-4 flex-1 rounded-lg border bg-background p-4">
-                        <Model currentModel={currentModel} />
-                    </div>
+                    <Suspense fallback={<Loader />} >
+                        <div className="mt-4 flex-1 rounded-lg border bg-background overflow-hidden">
+                            <Model currentModel={currentModel} />
+                        </div>
+                    </Suspense>
                     :
                     <div className="h-full p-4 flex items-center justify-center">
                         <div>
@@ -30,7 +34,7 @@ const ModelWrapper: React.FC<IModelWrapper> = ({ currentModel }) => {
                     </div>
             }
         </div>
-    </div>
+    </div >
         ;
 };
 

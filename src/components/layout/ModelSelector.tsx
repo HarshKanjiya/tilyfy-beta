@@ -38,7 +38,7 @@ const ModelSelector: React.FC<IModelSelector> = ({ currentModel, setCurrentModel
                 <div className="flex flex-col gap-2">
                     {
                         modelList.map((model: IModel) => (
-                            <Button variant={currentModel?.name == model.name ? 'default' :'secondary'} className="w-full" onClick={() => setCurrentModel(model.id)} >{model.name}</Button>
+                            <Button key={model.id} variant={currentModel?.name == model.name ? 'default' :'secondary'} className="w-full transition-all duration-300" onClick={() => setCurrentModel(model.id)} >{model.name}</Button>
                         ))
                     }
                 </div>

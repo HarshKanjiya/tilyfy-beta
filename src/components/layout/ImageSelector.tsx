@@ -45,15 +45,14 @@ const ImageSelector: React.FC<IModelSelector> = ({ addImage, images, onSetTextur
                         <DialogHeader>
                             <DialogTitle>Uplaod Image</DialogTitle>
                         </DialogHeader>
-                        <DialogDescription>
-                            <section className="w-full items-center">
+                            <div className="w-full items-center">
                                 <div className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden items-center">
                                     <div className="pt-4">
                                         <div id="image-preview" className="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
                                             <input id="upload" type="file" className="hidden" accept="image/*" />
                                             <label htmlFor="upload" className="cursor-pointer">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-8 h-8 text-gray-700 mx-auto mb-4">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8 text-gray-700 mx-auto mb-4">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
                                                 </svg>
                                                 <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-700">Upload picture</h5>
                                                 <p className="font-normal text-sm text-gray-400 md:px-6">Choose photo size should be less than <b className="text-gray-600">2mb</b></p>
@@ -70,7 +69,8 @@ const ImageSelector: React.FC<IModelSelector> = ({ addImage, images, onSetTextur
                                         </div>
                                     </div>
                                 </div>
-                            </section>
+                            </div>
+                        <DialogDescription>
                         </DialogDescription>
 
                     </DialogContent>
@@ -80,34 +80,14 @@ const ImageSelector: React.FC<IModelSelector> = ({ addImage, images, onSetTextur
                 <div className="grid grid-cols-2 gap-4">
                     {
                         images.map((image: IImage) =>
-                            <div className="relative aspect-square overflow-hidden rounded-lg bg-muted/20">
+                            <div key={image.id} className="relative aspect-square overflow-hidden rounded-lg bg-muted/20">
                                 <img
-                                    src={'/texture/' + image.path}
-                                    alt="Image 1"
+                                    src={'textures/' + image.path}
+                                    alt={image.name}
                                     width={300}
                                     height={300}
-                                    className="h-full w-full object-cover"
-                                    style={{ aspectRatio: "300/300", objectFit: "cover" }}
+                                    className="h-full w-full object-cover aspect-square flex items-center justify-center "
                                 />
-                                <div className="absolute inset-0 flex items-center justify-center bg-muted/50 opacity-0 transition-opacity hover:opacity-100">
-                                    <Button variant="ghost" size="icon" className="text-foreground">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        >
-                                            <path d="M5 12h14" />
-                                            <path d="M12 5v14" />
-                                        </svg>
-                                        <span className="sr-only">Select image</span>
-                                    </Button>
-                                </div>
                             </div>
                         )
                     }
