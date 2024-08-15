@@ -1,33 +1,39 @@
 import { IModel } from "@/Interface/common.interface";
+import { RootState } from "@/state/store";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
-import { AmbientLight, MeshPhongMaterial, MeshStandardMaterial, RepeatWrapping, TextureLoader } from "three";
-import * as THREE from "three"
+import { Canvas } from "@react-three/fiber";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import * as THREE from "three";
+import { AmbientLight, MeshStandardMaterial, RepeatWrapping, TextureLoader } from "three";
 import { Reflector } from "three/examples/jsm/Addons.js";
 interface ModelProps {
-    currentModel: IModel,
-    floorImage: string | undefined
 }
 
 
-const Model: React.FC<ModelProps> = ({ currentModel, floorImage }) => {
-    const { scene } = useGLTF("models/" + currentModel.path)
-    // const { materials, nodes } = useGLTF("models/" + currentModel.path)
+const Model: React.FC<ModelProps> = () => {
+
+    const activeImage = useSelector((state: RootState) => state.images.activeImage)
+    const activeModel = useSelector((state: RootState) => state.models.activeModel)
+
     useEffect(() => {
-        if (floorImage) loadFloor()
-    }, [floorImage, scene])
+        if (activeImage) loadFloor()
+    }, [activeImage])
+
+    // @ts-expect-error
+    const { scene } = useGLTF(activeModel.path)
+    // const { materials, nodes } = useGLTF("models/" + activeModel.path)
 
     const loadFloor = () => {
-        const floorTexture = new TextureLoader().load(`/textures/${floorImage}`);
+        const floorTexture = new TextureLoader().load(activeImage?.path);
         const floorMaterial = new MeshStandardMaterial();
 
         floorMaterial.map = floorTexture;
         floorTexture.wrapS = RepeatWrapping;
         floorTexture.wrapT = RepeatWrapping;
         floorTexture.repeat.set(7, 7);
-        floorMaterial.roughness = 0;
-        floorMaterial.metalness = 0.3;
+        floorMaterial.roughness = 1;
+        floorMaterial.metalness = 0;
 
         const ambientLight = new AmbientLight(0x404040, 1); // Soft white light
         scene.add(ambientLight);
@@ -73,7 +79,7 @@ const Model: React.FC<ModelProps> = ({ currentModel, floorImage }) => {
                         near={1}
                         far={1000}
                     ></PerspectiveCamera>
-                    
+
                     <OrbitControls enableZoom={true} enablePan={true} />
                     <primitive object={scene} scale={5} />
                 </Canvas>

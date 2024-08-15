@@ -9,18 +9,17 @@ import {
 import { Button } from "../ui/button";
 import React from "react";
 import { IImage } from "@/Interface/common.interface";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/state/store";
+import { setActiveImage } from "@/state/image.slice";
 
 interface IModelSelector {
-    images: IImage[],
-    addImage: (data: IImage) => void,
-    onSetTexture: (id: number) => void,
 }
 
-const ImageSelector: React.FC<IModelSelector> = ({ addImage, images, onSetTexture }) => {
+const ImageSelector: React.FC<IModelSelector> = () => {
 
-    const setImage = (image: IImage) => {
-        onSetTexture(image.id)
-    }
+    const images = useSelector((state: RootState) => state.images.imageList)
+    const dispatch = useDispatch()
 
     return <>
         <div className="flex w-64 flex-col border-l bg-background p-4">
@@ -85,9 +84,9 @@ const ImageSelector: React.FC<IModelSelector> = ({ addImage, images, onSetTextur
                 <div className="grid grid-cols-2 gap-4">
                     {
                         images.map((image: IImage) =>
-                            <button onClick={() => setImage(image)} key={image.id} className="relative aspect-square overflow-hidden rounded-lg bg-muted/20">
+                            <button onClick={() => dispatch(setActiveImage(image))} key={image.id} className="relative aspect-square overflow-hidden rounded-lg bg-muted/20">
                                 <img
-                                    src={'textures/' + image.path}
+                                    src={image.path}
                                     alt={image.name}
                                     width={300}
                                     height={300}

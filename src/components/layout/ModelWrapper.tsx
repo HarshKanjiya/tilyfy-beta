@@ -1,30 +1,31 @@
-import { IImage, IModel } from "@/Interface/common.interface";
-import Model from "./Model";
+import { RootState } from "@/state/store";
 import { Suspense } from "react";
+import { useSelector } from "react-redux";
 import Loader from "../ui/Loader";
+import Model from "./Model";
 
 
 interface IModelWrapper {
-    currentModel: IModel | null,
-    currentTextureIamge: IImage
 }
 
-const ModelWrapper: React.FC<IModelWrapper> = ({ currentModel, currentTextureIamge }) => {
+const ModelWrapper: React.FC<IModelWrapper> = () => {
+    const activeModel = useSelector((state: RootState) => state.models.activeModel)
+
     return <div className="flex-1 bg-muted/40 p-4">
         <div className="flex h-full flex-col">
             <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-bold">{currentModel?.name}</h1>
+                <h1 className="text-2xl font-bold">{activeModel?.name}</h1>
                 <div className="flex items-center gap-2">
                     {/* <Button variant="outline">Save</Button>
                     <Button>Publish</Button> */}
                 </div>
             </div>
             {
-                currentModel?.id
+                activeModel?.id
                     ?
                     <Suspense fallback={<Loader />} >
                         <div className="mt-4 flex-1 rounded-lg border bg-background overflow-hidden">
-                            <Model currentModel={currentModel} floorImage={currentTextureIamge?.path} />
+                            <Model />
                         </div>
                     </Suspense>
                     :

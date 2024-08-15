@@ -1,14 +1,16 @@
 import { IModel } from "@/Interface/common.interface";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/state/store";
+import { setActiveModel } from "@/state/model.slice";
 
 interface IModelSelector {
-    currentModel: IModel | null,
-    setCurrentModel: (id: number) => void,
-    modelList: IModel[]
 }
 
-const ModelSelector: React.FC<IModelSelector> = ({ currentModel, setCurrentModel, modelList }) => {
+const ModelSelector: React.FC<IModelSelector> = () => {
+    const { modelList, activeModel } = useSelector((state: RootState) => state.models)
+    const dispatch = useDispatch()
     return <>
         <div className="flex w-64 flex-col border-r bg-background ">
             <div className="flex items-center gap-2 border-b p-4">
@@ -38,7 +40,7 @@ const ModelSelector: React.FC<IModelSelector> = ({ currentModel, setCurrentModel
                 <div className="flex flex-col gap-2">
                     {
                         modelList.map((model: IModel) => (
-                            <Button key={model.id} variant={currentModel?.name == model.name ? 'default' :'secondary'} className="w-full transition-all duration-300" onClick={() => setCurrentModel(model.id)} >{model.name}</Button>
+                            <Button key={model.id} variant={activeModel?.name == model.name ? 'default' : 'secondary'} className="w-full transition-all duration-300" onClick={() => dispatch(setActiveModel(model))} >{model.name}</Button>
                         ))
                     }
                 </div>
