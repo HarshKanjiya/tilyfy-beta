@@ -28,7 +28,7 @@ function App() {
     <>
       <div className="flex min-h-screen w-full">
         <ModelSelector currentModel={currentModel} setCurrentModel={onSetCurrentModel} modelList={modelList} />
-        <ModelWrapper currentModel={currentModel} />
+        <ModelWrapper currentModel={currentModel} currentTextureIamge={currentTexture} />
         <ImageSelector images={images} addImage={onAddImage} onSetTexture={onSetTexture} />
       </div>
     </>

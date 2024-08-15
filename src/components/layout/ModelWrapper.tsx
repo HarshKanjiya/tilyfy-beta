@@ -1,14 +1,15 @@
-import { IModel } from "@/Interface/common.interface";
+import { IImage, IModel } from "@/Interface/common.interface";
 import Model from "./Model";
 import { Suspense } from "react";
 import Loader from "../ui/Loader";
 
 
 interface IModelWrapper {
-    currentModel: IModel | null
+    currentModel: IModel | null,
+    currentTextureIamge: IImage
 }
 
-const ModelWrapper: React.FC<IModelWrapper> = ({ currentModel }) => {
+const ModelWrapper: React.FC<IModelWrapper> = ({ currentModel, currentTextureIamge }) => {
     return <div className="flex-1 bg-muted/40 p-4">
         <div className="flex h-full flex-col">
             <div className="flex items-center justify-between">
@@ -23,7 +24,7 @@ const ModelWrapper: React.FC<IModelWrapper> = ({ currentModel }) => {
                     ?
                     <Suspense fallback={<Loader />} >
                         <div className="mt-4 flex-1 rounded-lg border bg-background overflow-hidden">
-                            <Model currentModel={currentModel} />
+                            <Model currentModel={currentModel} floorImage={currentTextureIamge?.path} />
                         </div>
                     </Suspense>
                     :
