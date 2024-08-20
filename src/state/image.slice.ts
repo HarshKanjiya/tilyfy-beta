@@ -19,11 +19,7 @@ const initialState: IImageSlice = {
         name: "texture2",
         path: "/textures/texture2.jpg"
     },
-    {
-        id: 3,
-        name: "texture3",
-        path: "/textures/texture4.jpg"
-    },]
+    ]
 
 }
 

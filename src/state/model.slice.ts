@@ -12,17 +12,17 @@ const initialState: IModelSlice = {
     modelList: [
         {
             id: 1,
-            name: "Hospital",
-            path: "models/hospital.glb"
+            name: "Dining Room 1",
+            path: "models/dining_room1.glb"
         },
         {
             id: 2,
-            name: "Dining Room",
-            path: "models/dining_room.glb"
+            name: "Dining Room 2",
+            path: "models/dining_room2.glb"
         },
         {
             id: 3,
-            name: "Living Room",
+            name: "Living room",
             path: "models/living_room.glb"
         },
     ]

@@ -32,8 +32,8 @@ const Model: React.FC<ModelProps> = () => {
         floorTexture.wrapS = RepeatWrapping;
         floorTexture.wrapT = RepeatWrapping;
         floorTexture.repeat.set(7, 7);
-        floorMaterial.roughness = 1;
-        floorMaterial.metalness = 0;
+        // floorMaterial.roughness = 1;
+        // floorMaterial.metalness = 1;
 
         const ambientLight = new AmbientLight(0x404040, 1); // Soft white light
         scene.add(ambientLight);
