@@ -43,7 +43,7 @@ const ImageSelector: React.FC<IModelSelector> = () => {
     }
 
     return <>
-        <div className="flex w-64 flex-col border-l bg-background p-4">
+        <div className="flex sm:w-64 flex-col border-l bg-background p-4">
             <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Select Image</h2>
                 <Dialog open={open}>
@@ -73,7 +73,7 @@ const ImageSelector: React.FC<IModelSelector> = () => {
                         <div className="w-full items-center">
                             <div className="max-w-sm mx-auto bg-white rounded-lg overflow-hidden items-center">
                                 <div className="pt-4">
-                                    <div id="image-preview" className="max-w-sm p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
+                                    <div id="image-preview" className="max-w-sm p-3 sm:p-6 mb-4 bg-gray-100 border-dashed border-2 border-gray-400 rounded-lg items-center mx-auto text-center cursor-pointer">
                                         {base64Image ? (
                                             <div className="flex items-center justify-center">
                                                 <div className="relative">
@@ -129,16 +129,14 @@ const ImageSelector: React.FC<IModelSelector> = () => {
                 </Dialog>
             </div>
             <div className="mt-4 flex-1 overflow-auto">
-                <div className="grid grid-cols-2 gap-4">
+                <div className=" flex overflow-scroll sm:overflow-hidden gap-3 sm:grid grid-cols-2 gap-4">
                     {
                         images.map((image: IImage) =>
                             <button onClick={() => dispatch(setActiveImage(image))} key={image.id} className="relative aspect-square overflow-hidden rounded-lg bg-muted/20">
                                 <img
                                     src={image.path}
                                     alt={image.name}
-                                    width={300}
-                                    height={300}
-                                    className="h-full w-full object-cover aspect-square flex items-center justify-center "
+                                    className="h-[80px] object-cover aspect-square flex items-center justify-center "
                                 />
                             </button>
                         )

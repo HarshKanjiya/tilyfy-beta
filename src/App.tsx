@@ -6,7 +6,7 @@ import ModelWrapper from './components/layout/ModelWrapper'
 function App() {
   return (
     <>
-      <div className="flex min-h-screen w-full">
+      <div className="flex min-h-screen w-full flex-col sm:flex-row">
         <ModelSelector />
         <ModelWrapper />
         <ImageSelector />

@@ -1,4 +1,3 @@
-import { IModel } from "@/Interface/common.interface";
 import { RootState } from "@/state/store";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -25,7 +24,7 @@ const Model: React.FC<ModelProps> = () => {
     // const { materials, nodes } = useGLTF("models/" + activeModel.path)
 
     const loadFloor = () => {
-        const floorTexture = new TextureLoader().load(activeImage?.path);
+        const floorTexture = new TextureLoader().load(activeImage?.path ?? "");
         const floorMaterial = new MeshStandardMaterial();
 
         floorMaterial.map = floorTexture;
@@ -39,23 +38,26 @@ const Model: React.FC<ModelProps> = () => {
         scene.add(ambientLight);
 
 
-        const geometry = new THREE.PlaneGeometry(10, 10);
-        const reflector = new Reflector(geometry, {
-            clipBias: 0.003,
-            textureWidth: window.innerWidth * window.devicePixelRatio,
-            textureHeight: window.innerHeight * window.devicePixelRatio,
-            color: 0x889999
-        });
-        reflector.rotation.x = -Math.PI / 2;
-        scene.add(reflector);
+        // const geometry = new THREE.PlaneGeometry(10, 10);
+        // const reflector = new Reflector(geometry, {
+        //     clipBias: 0.003,
+        //     textureWidth: window.innerWidth * window.devicePixelRatio,
+        //     textureHeight: window.innerHeight * window.devicePixelRatio,
+        //     color: 0x889999
+        // });
+        // reflector.rotation.x = -Math.PI / 2;
+        // scene.add(reflector);
 
 
         scene.traverse((child) => {
             if (child.name === 'floor') {
                 child.children.map((c) => {
+                    // @ts-ignore
                     if (c.isMesh) {
                         // c.material.map = floorTexture;
+                        // @ts-ignore
                         c.material = floorMaterial;
+                        // @ts-ignore
                         c.material.needsUpdate = true;
                     }
                 })
@@ -70,6 +72,7 @@ const Model: React.FC<ModelProps> = () => {
 
             <div className="h-full w-full overflow-hidden">
                 <Canvas className="cursor-pointer" frameloop="demand">
+                    <ambientLight intensity={1.2} />
                     <ambientLight intensity={1.2} />
                     <PerspectiveCamera
                         makeDefault

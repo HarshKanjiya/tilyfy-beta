@@ -12,12 +12,12 @@ const ModelSelector: React.FC<IModelSelector> = () => {
     const { modelList, activeModel } = useSelector((state: RootState) => state.models)
     const dispatch = useDispatch()
     return <>
-        <div className="flex w-64 flex-col border-r bg-background ">
+        <div className="flex sm:w-64 flex-col border-r bg-background ">
             <div className="flex items-center gap-2 border-b p-4">
                 <p className="text-lg font-semibold">Tilyfy</p><Badge variant="secondary" >beta</Badge>
             </div>
-            <div className="flex items-center justify-between p-4">
-                <h2 className="text-lg font-semibold">Model Selector</h2>
+            <div className="hidden sm:flex items-center justify-between p-4">
+                <h2 className="sm:text-lg font-semibold">Model Selector</h2>
                 {/* <Button variant="ghost" size="icon">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ const ModelSelector: React.FC<IModelSelector> = () => {
                 </Button> */}
             </div>
             <div className=" p-4  flex-1 overflow-auto">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-row overflow-scroll sm:overflow-hidden sm:flex-col gap-2 pb-2">
                     {
                         modelList.map((model: IModel) => (
                             <Button key={model.id} variant={activeModel?.name == model.name ? 'default' : 'secondary'} className="w-full transition-all duration-300" onClick={() => dispatch(setActiveModel(model))} >{model.name}</Button>
