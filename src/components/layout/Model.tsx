@@ -3,9 +3,7 @@ import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import * as THREE from "three";
 import { AmbientLight, MeshStandardMaterial, RepeatWrapping, TextureLoader } from "three";
-import { Reflector } from "three/examples/jsm/Addons.js";
 interface ModelProps {
 }
 
