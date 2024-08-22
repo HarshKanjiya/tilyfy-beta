@@ -37,7 +37,7 @@ const ModelSelector: React.FC<IModelSelector> = () => {
                 </Button> */}
             </div>
             <div className=" p-4  flex-1 overflow-auto">
-                <div className="flex flex-row overflow-scroll sm:overflow-hidden sm:flex-col gap-2 pb-2">
+                <div className="flex flex-row overflow-scroll sm:overflow-hidden sm:flex-col gap-2 pb-2 sm:pb-0">
                     {
                         modelList.map((model: IModel) => (
                             <Button key={model.id} variant={activeModel?.name == model.name ? 'default' : 'secondary'} className="w-full transition-all duration-300" onClick={() => dispatch(setActiveModel(model))} >{model.name}</Button>

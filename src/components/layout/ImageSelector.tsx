@@ -128,15 +128,15 @@ const ImageSelector: React.FC<IModelSelector> = () => {
                     </DialogContent>
                 </Dialog>
             </div>
-            <div className="mt-4 flex-1 overflow-auto">
-                <div className=" flex overflow-scroll sm:overflow-hidden gap-3 sm:grid grid-cols-2 gap-4">
+            <div className="mt-4 flex-1 overflow-scroll sm:overflow-hidden pb-2 sm:pb-0">
+                <div className=" flex gap-3 sm:grid grid-cols-2 sm:gap-4 w-fit">
                     {
                         images.map((image: IImage) =>
-                            <button onClick={() => dispatch(setActiveImage(image))} key={image.id} className="relative aspect-square overflow-hidden rounded-lg bg-muted/20">
+                            <button onClick={() => dispatch(setActiveImage(image))} key={image.id} className="relative aspect-square overflow-hidden rounded-lg bg-muted/20 h-[80px] sm:h-[100px]">
                                 <img
                                     src={image.path}
                                     alt={image.name}
-                                    className="h-[80px] object-cover aspect-square flex items-center justify-center "
+                                    className="object-cover aspect-square flex items-center justify-center "
                                 />
                             </button>
                         )

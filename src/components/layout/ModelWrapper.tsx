@@ -13,8 +13,8 @@ const ModelWrapper: React.FC<IModelWrapper> = () => {
 
     return (
         <>
-            <div className="flex-1 bg-muted/40 p-4">
-                <div className="flex h-full flex-col">
+            <div className="flex-1 flex items-center justify-center bg-muted/40 p-4 sm:p-4">
+                <div className="flex h-full flex-col items-center justify-center w-full ">
                     <div className="flex items-center justify-between">
                         <h1 className="hidden sm:block sm:text-2xl font-bold">{activeModel?.name}</h1>
                         <div className="flex items-center gap-2">
@@ -26,12 +26,12 @@ const ModelWrapper: React.FC<IModelWrapper> = () => {
                         activeModel?.id
                             ?
                             <Suspense fallback={<Loader />} >
-                                <div className="mt-4 flex-1 rounded-lg border bg-background overflow-hidden">
+                                <div className="flex-1 h-full w-full rounded-lg border border-slate-200 bg-background overflow-hidden">
                                     <Model />
                                 </div>
                             </Suspense>
                             :
-                            <div className="h-full p-4 flex items-center justify-center">
+                            <div className="h-full flex items-center justify-center">
                                 <div>
                                     <h2 className="text-2xl font-semibold text-slate-400">Select Model</h2>
                                 </div>

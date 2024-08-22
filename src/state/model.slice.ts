@@ -13,17 +13,20 @@ const initialState: IModelSlice = {
         {
             id: 1,
             name: "Dining Room 1",
-            path: "models/dining_room1.glb"
+            path: "models/dining_room1.glb",
+            floorTextureName: "floor"
         },
         {
             id: 2,
             name: "Dining Room 2",
-            path: "models/dining_room2.glb"
+            path: "models/dining_room2.glb",
+            floorTextureName: "Modern_Dining_Room"
         },
         {
             id: 3,
             name: "Living room",
-            path: "models/living_room.glb"
+            path: "models/living_room.glb",
+            floorTextureName: "floor"
         },
     ]
 
