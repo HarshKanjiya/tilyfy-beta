@@ -85,6 +85,6 @@
 
 @media screen and (max-width: 425px){
 .modalsmall{
-  height: 500px;
+  height: 420px !important;
 }
 }
