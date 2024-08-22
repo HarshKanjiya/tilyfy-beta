@@ -48,7 +48,20 @@ const Model: React.FC<ModelProps> = () => {
 
 
         scene.traverse((child) => {
+            console.log('child', child?.name)
             if (child.name === 'floor') {
+                child.children.map((c) => {
+                    // @ts-ignore
+                    if (c.isMesh) {
+                        // c.material.map = floorTexture;
+                        // @ts-ignore
+                        c.material = floorMaterial;
+                        // @ts-ignore
+                        c.material.needsUpdate = true;
+                    }
+                })
+            }
+            else if(child.name === 'Modern_Dining_Room'){
                 child.children.map((c) => {
                     // @ts-ignore
                     if (c.isMesh) {
@@ -69,7 +82,7 @@ const Model: React.FC<ModelProps> = () => {
         <>
 
             <div className="h-full w-full overflow-hidden">
-                <Canvas className="cursor-pointer" frameloop="demand">
+                <Canvas className="cursor-pointer modalsmall" frameloop="demand">
                     <ambientLight intensity={1.2} />
                     <ambientLight intensity={1.2} />
                     <PerspectiveCamera
