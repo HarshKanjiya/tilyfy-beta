@@ -25,7 +25,37 @@ const initialState: IModelSlice = {
         {
             id: 3,
             name: "Living room",
-            path: "models/living_room.glb",
+            path: "models/living_room2.glb",
+            floorTextureName: "Cube019"
+        },
+        {
+            id: 4,
+            name: "Bath room",
+            path: "models/bathroom2.glb",
+            floorTextureName: "floor"
+        },
+        {
+            id: 5,
+            name: "Bath room 2",
+            path: "models/bathroom3.glb",
+            floorTextureName: "floor"
+        },
+        {
+            id: 6,
+            name: "Bed room",
+            path: "models/bedroom.glb",
+            floorTextureName: "floor"
+        },
+        {
+            id: 7,
+            name: "Bed room2",
+            path: "models/bedroom2.glb",
+            floorTextureName: "floor"
+        },
+        {
+            id: 8,
+            name: "Bed room3",
+            path: "models/bedroom3.glb",
             floorTextureName: "floor"
         },
     ]
